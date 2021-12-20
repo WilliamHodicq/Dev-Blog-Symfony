@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Se connecter au blog' %}
+
+{% block body %}
+    {% if error %}
+        <div class="alert alert-danger">
+            <p>{{ error.messageKey | trans(error.messagedata,'security') }}</p>
+        </div>
+    {% endif %}
+    <div class="container d-flex justify-content-center mt-5">
+        <form action="{{ path('app_login') }}" method="post" class="col-md-4  ">
+            <div class="form-group my-1">
+                <label for="username">Identifiant de connexion</label>
+                <input type="text" id="username" name="_username" class="form-control">
+            </div>
+            <div class="form-group my-1">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="_password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Connexion</button>
+        </form>
+    </div>
+
+{% endblock %}

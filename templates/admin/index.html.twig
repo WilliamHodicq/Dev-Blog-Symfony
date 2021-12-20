@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block title 'Admin - The dev planet'%}
+{% block body %}
+    <div class="main-container mt-4">
+        <h1>Manage articles</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.title }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_edit',{id:article.id}) }}"class="btn btn-secondary">Editer</a>
+                        <form action="{{ path('app_admin_delete',{id:article.id}) }}" method="post"
+                              style="display: inline-block" onsubmit="return confirm('Are you sure to remove this article ? ')">
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-end">
+            <a href="{{ path('app_admin_new') }}" class="btn btn-primary">Créer un nouveau bien</a>
+        </div>
+    </div>
+
+{%  endblock %}

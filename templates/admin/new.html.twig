@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title 'Admin - The dev planet'%}
+{% block body %}
+    <div class="main-container mt-4">
+        <h1>edit this article</h1>
+        {{ form_start(form) }}
+        <div class="row align-items-center">
+            <div class="col-md-6">{{ form_row(form.title) }}</div>
+            <div class="col-md-6">{{ form_row(form.imageFile) }}</div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-md-12">{{ form_row(form.description) }}</div>
+        </div>
+        {{ form_rest(form) }}
+        <button class="btn btn-primary">Save</button>
+        {{ form_end(form) }}
+
+    </div>
+
+{%  endblock %}

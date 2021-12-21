@@ -3,7 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Articles;
+use App\Entity\Contact;
+use App\Entity\Property;
 use App\Form\ArticlesType;
+use App\Form\ContactType;
+use App\Notification\ContactNotification;
 use App\Repository\ArticlesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -36,7 +40,7 @@ class ArticlesController extends AbstractController
      */
     public function index(ArticlesRepository $repository,Request $request):Response
     {
-        $getArticles = $repository->findAll();
+        $getArticles = $repository->findAllDesc();
         $newArticle = new Articles();
 
         $form = $this->createForm(ArticlesType::class,$newArticle );
@@ -58,16 +62,22 @@ class ArticlesController extends AbstractController
             "articles" => $getArticles,
         ]);
     }
+
     /**
-     * @Route ("/articles/edit/{id}", name="app_articles_edit")
+     * @Route("/article/{id}", name="app_article_show" )
+     * @param $id
+     * @return Response
      */
-    public function edit(Articles $articles,Request $request){
+    public function show(Articles $articles,Request $request):Response{
+
+
+        return $this->render('articles/show.html.twig',[
+            'article'=> $articles,
+            'current_menu' => 'articles',
+        ]);
 
     }
-    /**
-     * @Route ("/articles{id}", name="app_articles_delete", methods="DELETE")
-     */
-    public function remove(Articles $articles,Request $request){
 
-    }
+
+
 }

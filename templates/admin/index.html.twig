@@ -20,10 +20,10 @@
             </thead>
             <tbody>
             {% for article in articles %}
-                <tr>
+                <tr class="align-middle">
                     <td>{{ article.title }}</td>
                     <td>
-                        <a href="{{ path('app_admin_edit',{id:article.id}) }}"class="btn btn-secondary">Editer</a>
+                        <a href="{{ path('app_admin_edit',{id:article.id}) }}"class="btn btn-secondary">Edit</a>
                         <form action="{{ path('app_admin_delete',{id:article.id}) }}" method="post"
                               style="display: inline-block" onsubmit="return confirm('Are you sure to remove this article ? ')">
                             <input type="hidden" name="_method" value="DELETE" />
@@ -35,9 +35,13 @@
             {% endfor %}
             </tbody>
         </table>
-
-        <div class="text-end">
-            <a href="{{ path('app_admin_new') }}" class="btn btn-primary">Créer un nouveau bien</a>
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="text-center">
+                <a href="{{ path('admin_tags_index') }}" class="btn btn-success">Manage Tags</a>
+            </div>
+            <div class="text-end">
+                <a href="{{ path('app_admin_new') }}" class="btn btn-primary">Create a new article</a>
+            </div>
         </div>
     </div>
 

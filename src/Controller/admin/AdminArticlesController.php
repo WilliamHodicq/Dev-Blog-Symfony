@@ -4,6 +4,7 @@ namespace App\Controller\admin;
 
 
 use App\Entity\Articles;
+use App\Entity\Tags;
 use App\Form\ArticlesType;
 use App\Repository\ArticlesRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -76,6 +77,7 @@ class AdminArticlesController extends AbstractController
      */
     public function edit(Request $request,  EntityManagerInterface $entityManager,Articles $articles): Response
     {
+
 
         $form = $this->createForm(ArticlesType::class,$articles);
         $form->handleRequest($request);

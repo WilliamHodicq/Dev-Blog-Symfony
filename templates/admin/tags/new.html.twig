@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Tags{% endblock %}
+
+{% block body %}
+    <div class="main-container mt-4">
+    <h1>Create new Tags</h1>
+
+    {{ include('admin/tags/_form.html.twig') }}
+
+    <a href="{{ path('admin_tags_index') }}" class="btn btn-primary">back to list</a>
+    </div>
+{% endblock %}

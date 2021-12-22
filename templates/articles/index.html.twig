@@ -42,11 +42,17 @@
 
                         </div>
                         <div class="card-body ">
-                            <h5 class="card-title">{{ article.title }}</h5>
+                            <h5 class="card-title">{{ article.title }} </h5>
+
                             <p class="card-text">{{ article.description |slice(0, 200) ~ '...' | raw }}</p>
-                            <a href="{{ path('app_article_show',{id: article.id}) }}" class="btn btn-primary">link</a>
+                            <a href="{{ path('app_article_show',{id: article.id}) }}" class="btn btn-primary ">link</a>
                         </div>
-                        <div class="card-footer text-muted">
+                        <div class="my-2">
+                            {% for tag in article.tags%}
+                                <span class="badge bg-success bg-gradient"><a href="{{ path('app_articles_index_tags',{id:tag.id}) }}" class="text-decoration-none text-white p-2">{{ tag.name }}</a></span>
+                            {% endfor %}
+                        </div>
+                        <div class="card-footer text-white">
                             {{ article.formattedDate  }}
                         </div>
                     </div>

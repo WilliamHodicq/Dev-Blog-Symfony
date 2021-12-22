@@ -5,10 +5,12 @@ namespace App\Controller;
 use App\Entity\Articles;
 use App\Entity\Contact;
 use App\Entity\Property;
+use App\Entity\Tags;
 use App\Form\ArticlesType;
 use App\Form\ContactType;
 use App\Notification\ContactNotification;
 use App\Repository\ArticlesRepository;
+use App\Repository\TagsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -64,13 +66,27 @@ class ArticlesController extends AbstractController
     }
 
     /**
+     * @Route ("/articles/tags/{id}", name="app_articles_index_tags")
+     */
+    public function indexTags(Tags $tags): Response
+    {
+
+        return $this->render('articles/show.tags.html.twig',[
+            'tag'=>$tags,
+            'current_menu' => 'articles',
+
+        ]);
+    }
+
+    /**
      * @Route("/article/{id}", name="app_article_show" )
-     * @param $id
+     * @param Articles $articles
+     * @param Request $request
      * @return Response
      */
     public function show(Articles $articles,Request $request):Response{
 
-
+dump($articles);
         return $this->render('articles/show.html.twig',[
             'article'=> $articles,
             'current_menu' => 'articles',

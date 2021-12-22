@@ -39,14 +39,11 @@
                 </div>
 
                 <div class="p-2 mb-2">
-                    <h4 class="fst-italic">Voir option de trie des articles</h4>
-                    <ol class="list-unstyled mb-0 d-flex align-items-center justify-content-evenly">
-                        <li><a href="#" class="link-light"><button class="btn btn-light">trie 1</button></a></li>
-                        <li><a href="#" class="link-light"><button class="btn btn-light">trie 2</button></a></li>
-                        <li><a href="#" class="link-light"><button class="btn btn-light">trie 3</button></a></li>
-                        <li><a href="#" class="link-light"><button class="btn btn-light">trie 4</button></a></li>
-                        <li><a href="#" class="link-light"><button class="btn btn-light">trie 5</button></a></li>
-                        <li><a href="#" class="link-light"><button class="btn btn-light">trie 6</button></a></li>
+                    <h4 class="fst-italic">Articles category</h4>
+                    <ol class="list-unstyled mb-0 d-flex align-items-center justify-content-evenly flex-wrap">
+                        {% for tag in tags %}
+                        <li><a href="{{ path('app_articles_index_tags',{id:tag.id}) }}" class="link-light"><button class="btn btn-light my-1 mx-1">{{ tag.name }}</button></a></li>
+                        {% endfor %}
                     </ol>
                 </div>
 

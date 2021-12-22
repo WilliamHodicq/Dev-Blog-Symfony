@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Articles;
+use App\Entity\Tags;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -18,6 +20,14 @@ class ArticlesType extends AbstractType
             ->add('description', TextareaType::class)
             ->add('imageFile', FileType::class,[
                 'required' => false
+            ])
+            ->add('tags', EntityType::class,[
+                'class'=>Tags::class,
+                'label'=> 'Tags',
+                'required'=> false,
+                'choice_label'=>'name',
+                'multiple'=>true,
+                'expanded' => false,
             ])
 
         ;
